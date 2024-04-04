@@ -20,6 +20,7 @@
     "@angular/router": "^17.1.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "js-yaml": "^4.1.0",
     "mongoose": "^8.2.4",
     "rxjs": "~7.8.0",
     "swagger": "^0.7.5",

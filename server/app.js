@@ -2,9 +2,12 @@
 // Justin Barlowe
 // Server file.
 
+"use strict";
+
 // Importing the necessary modules.
 const express = require('express');
-const dontenv = require('dotenv');
+const path = require('path');
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
@@ -17,7 +20,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // dotenv configuration.
-dontenv.config();
+dotenv.config();
+
+// Importing the routes.
+const ResourceAPI = require('./routes/resourcesAPI');
 
 // Swagger options
 const swaggerOptions = {
@@ -28,13 +34,15 @@ const swaggerOptions = {
       version: '1.0.0',
     },
   },
-  apis: ['./routes/*.js'],
+  apis: ["./server/routes/*.js", "./server/api/*.yaml"],
 };
 
 const openapiSpecification = swaggerJsdoc(swaggerOptions);
 
 // OpenAPI Specification
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
+
+app.use('/api/resources', ResourceAPI);
 
 
 // Connect to the database.
@@ -59,5 +67,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+console.log(openapiSpecification);
 
 module.exports = app;

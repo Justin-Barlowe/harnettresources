@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: Harnett County Resource Site API
+  version: '1.0.0'
+  description: API documentation for Harnett County Resource Site
+
+paths:
+  /api/resources:
+    get:
+      tags:
+        - resources
+      summary: Get all resources
+      description: Retrieve a list of all resources from the Harnett County Resource Guide.
+      responses:
+        '200':
+          description: Successfully retrieved the list of resources.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Agency'
+        '500':
+          description: Server error
+
+components:
+  schemas:
+    Agency:
+      type: object
+      properties:
+        Category:
+          type: string
+          description: The category of the resource
+        AgencyName:
+          type: string
+          description: The name of the agency
+        Address:
+          type: string
+          description: The physical address of the agency
+        Phone:
+          type: string
+          description: The contact phone number for the agency
+        Email:
+          type: string
+          description: The contact email for the agency
+        Website:
+          type: string
+          description: The website URL for the agency
+        ServicesOffered:
+          type: string
+          description: Description of services offered by the agency
