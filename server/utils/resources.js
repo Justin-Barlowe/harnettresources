@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Agency = require('../models/agency'); // Adjust the path as necessary
 
 // MongoDB connection string
-const dbconn = 'mongodb+srv://jbarlowe:iT9omxGh08dKz9Mi@discord.ny6wpas.mongodb.net/harnettresources?retryWrites=true&w=majority&appName=discord';
+const dbconn = ''; //Add mongo connection string here if this file is needed agian.
 
 const agencies = [
           {
