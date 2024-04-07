@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private resourceService: ResourceService) { }
 
+  // Fetch resources from the service
   ngOnInit() {
     this.resourceService.getResources().subscribe({
       next: (data) => {

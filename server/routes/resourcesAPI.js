@@ -5,6 +5,8 @@ const express = require('express');
 const router = express.Router();
 const Guide = require('../models/agency');
 
+
+// GET api for getting all resources from the database.
 router.get('/', async (req, res) => {
   try {
     const resources = await Guide.find();
