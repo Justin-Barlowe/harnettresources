@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: Resources API
+  version: 1.0.0
+paths:
+  /api/category/{category}:
+    get:
+      summary: Get resources by category
+      parameters:
+        - in: path
+          name: category
+          schema:
+            type: string
+          required: true
+          description: The category of the resources
+      responses:
+        '200':
+          description: A list of resources
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Resource'
+        '500':
+          description: An error occurred while fetching resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Resource:
+      type: object
+      properties:
+        Category:
+          type: string
+        AgencyName:
+          type: string
+        Address:
+          type: string
+        Phone:
+          type: string
+        Email:
+          type: string
+        Website:
+          type: string
+        ServicesOffered:
+          type: string
+        ContactPerson:
+          type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string

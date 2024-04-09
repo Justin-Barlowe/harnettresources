@@ -1,3 +1,5 @@
+// home.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResourceService } from '../resource.service';
@@ -26,4 +28,5 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
 }

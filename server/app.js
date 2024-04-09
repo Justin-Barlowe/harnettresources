@@ -24,6 +24,7 @@ dotenv.config();
 
 // Importing the routes.
 const ResourceAPI = require('./routes/resourcesAPI');
+const cateogryAPI = require('./routes/categoryAPI');
 
 // Swagger options
 const swaggerOptions = {
@@ -43,6 +44,7 @@ const openapiSpecification = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 app.use('/api/resources', ResourceAPI);
+app.use('/api/category', cateogryAPI);
 
 
 // Connect to the database.
