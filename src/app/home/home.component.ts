@@ -13,15 +13,14 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  resources: any[] = [];
+  resourcesByCategory = new Map<string, any[]>();
 
   constructor(private resourceService: ResourceService) { }
 
-  // Fetch resources from the service
   ngOnInit() {
     this.resourceService.getResources().subscribe({
       next: (data) => {
-        this.resources = data;
+        this.groupResourcesByCategory(data);
       },
       error: (error) => {
         console.error('Error fetching resources', error);
@@ -29,4 +28,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  private groupResourcesByCategory(resources: any[]) {
+    resources.forEach(resource => {
+      const category = resource.Category;
+      if (!this.resourcesByCategory.has(category)) {
+        this.resourcesByCategory.set(category, []);
+      }
+      const categoryResources = this.resourcesByCategory.get(category);
+      if (categoryResources) {
+        categoryResources.push(resource);
+      }
+    });
+  }
 }
