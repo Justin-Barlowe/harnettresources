@@ -14,12 +14,12 @@
           <div class="card-content">
             <p class="subtitle has-text-centered"><strong>{{ resource.AgencyName }}</strong></p>
             <br>
-            <p><strong>Address: </strong>{{ resource.Address }}</p>
-            <p><strong>Phone: </strong>{{ resource.Phone }}</p>
-            <p><strong>Email: </strong>{{ resource.Email }}</p>
-            <p><strong>Website: </strong>{{ resource.Website }}</p>
-            <p><strong>Services Offered: </strong>{{ resource.ServicesOffered }}</p>
-            <p> <strong>Contact: </strong>{{ resource.ContactPerson }}</p>
+            <p *ngIf="resource.Address"><strong>Address: </strong>{{ resource.Address }}</p>
+            <p *ngIf="resource.Phone"><strong>Phone: </strong>{{ resource.Phone }}</p>
+            <p *ngIf="resource.Email"><strong>Email: </strong>{{ resource.Email }}</p>
+            <p *ngIf="resource.Website"><strong>Website: </strong>{{ resource.Website }}</p>
+            <p *ngIf="resource.ServicesOffered"><strong>Services Offered: </strong>{{ resource.ServicesOffered }}</p>
+            <p *ngIf="resource.ContactPerson"> <strong>Contact: </strong>{{ resource.ContactPerson }}</p>
           </div>
         </div>
       </div>
