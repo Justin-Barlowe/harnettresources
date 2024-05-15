@@ -25,7 +25,7 @@ dotenv.config();
 // Importing the routes.
 const ResourceAPI = require('./routes/resourcesAPI');
 const cateogryAPI = require('./routes/categoryAPI');
-const signinApi = require('./routes/signinApi');
+// const signinApi = require('./routes/signinApi');
 
 // Swagger options
 const swaggerOptions = {
@@ -46,7 +46,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 app.use('/api/resources', ResourceAPI);
 app.use('/api/category', cateogryAPI);
-app.use('/api/signin', signinApi);
+// app.use('/api/signin', signinApi);
 
 
 // Connect to the database.
