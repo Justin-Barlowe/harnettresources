@@ -14,18 +14,18 @@ const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 
-// Importing the routes.
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 // dotenv configuration.
-dotenv.config();
+dotenv.config(); // Ensure this is at the top before using process.env
 
 // Importing the routes.
 const ResourceAPI = require('./routes/resourcesAPI');
-const cateogryAPI = require('./routes/categoryAPI');
+const categoryAPI = require('./routes/categoryAPI');
 // const signinApi = require('./routes/signinApi');
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Swagger options
 const swaggerOptions = {
@@ -45,21 +45,31 @@ const openapiSpecification = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 app.use('/api/resources', ResourceAPI);
-app.use('/api/category', cateogryAPI);
+app.use('/api/category', categoryAPI);
 // app.use('/api/signin', signinApi);
 
-app.use(express.static(path.join(__dirname, 'dist/harnettresources/browser')));
+// Serve static files from the Angular app
+const staticPath = path.join(__dirname, 'dist/harnettresources/browser');
+console.log('Static files path:', staticPath);  // Debug log
+app.use(express.static(staticPath));
 
+// Fallback route for client-side routing
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/harnettresources/browser', 'index.html'));
+  const indexPath = path.join(staticPath, 'index.html');
+  console.log('Index file path:', indexPath);  // Debug log
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      console.log('Error sending file:', err);  // Log any errors
+      res.status(500).send(err);
+    }
+  });
 });
 
-
 // Connect to the database.
+console.log('MongoDB Connection String:', process.env.dbconn);
 mongoose.connect(process.env.dbconn).then(() => {
   console.log('Connected to MongoDB');
-}
-).catch((err) => {
+}).catch((err) => {
   console.log('Error connecting to MongoDB', err);
 });
 
