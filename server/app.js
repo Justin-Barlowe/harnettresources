@@ -49,7 +49,7 @@ app.use('/api/category', categoryAPI);
 // app.use('/api/signin', signinApi);
 
 // Serve static files from the Angular app
-const staticPath = path.join(__dirname, 'dist/harnettresources/browser');
+const staticPath = path.join(__dirname, '../dist/harnettresources/browser');
 console.log('Static files path:', staticPath);  // Debug log
 app.use(express.static(staticPath));
 
