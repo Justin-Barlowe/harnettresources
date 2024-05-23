@@ -51,7 +51,7 @@ app.use('/api/category', cateogryAPI);
 app.use(express.static(path.join(__dirname, 'dist/harnettresources')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/harnettresources/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/harnettresources/browser/index.html'));
 });
 
 
