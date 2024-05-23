@@ -48,10 +48,10 @@ app.use('/api/resources', ResourceAPI);
 app.use('/api/category', cateogryAPI);
 // app.use('/api/signin', signinApi);
 
-app.use(express.static(path.join(__dirname, 'dist/harnettresources')));
+app.use(express.static(path.join(__dirname, 'dist/harnettresources/browser')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/harnettresources/browser/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/harnettresources/browser', 'index.html'));
 });
 
 
