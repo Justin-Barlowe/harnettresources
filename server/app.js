@@ -20,7 +20,6 @@ dotenv.config(); // Ensure this is at the top before using process.env
 // Importing the routes.
 const ResourceAPI = require('./routes/resourcesAPI');
 const categoryAPI = require('./routes/categoryAPI');
-// const signinApi = require('./routes/signinApi');
 
 // Middleware
 app.use(cors());
@@ -36,7 +35,7 @@ const swaggerOptions = {
       version: '1.0.0',
     },
   },
-  apis: ["./server/routes/*.js", "./server/api/*.yaml"],
+  apis: ["./server/routes/*.js", "./server/api/*.yaml" , "./routes/*.js"],
 };
 
 const openapiSpecification = swaggerJsdoc(swaggerOptions);
@@ -46,7 +45,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 
 app.use('/api/resources', ResourceAPI);
 app.use('/api/category', categoryAPI);
-// app.use('/api/signin', signinApi);
 
 // Serve static files from the Angular app
 const staticPath = path.join(__dirname, '../dist/harnettresources/browser');

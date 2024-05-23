@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 export class ResourceService {
 
   // Define the API endpoint
-  private apiUrl = 'http://localhost:3000/api/resources'
-  private apiUrl2 = 'http://localhost:3000/api/category'
+  private apiUrl = '/api/resources'
+  private apiUrl2 = '/api/category'
 
   // Inject the HttpClient module
   constructor(private http: HttpClient) { }
